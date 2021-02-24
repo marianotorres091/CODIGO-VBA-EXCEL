@@ -1,0 +1,50 @@
+Sub MAYOR()
+    Dim nFilas As Double
+    Dim nColumnas As Double
+    Dim K As Integer
+    Dim J As Integer
+    Dim cont As Integer
+    
+    
+    'Calcular el número de filas de la hoja actual
+    Set rango = ActiveSheet.UsedRange
+    nFilas = rango.Rows.Count
+    nColumnas = rango.Columns.Count
+   x = 3
+    pos = Cells(x, 8).Value
+    monto = Cells(x, 14).Value
+    
+    For J = 2 To nFilas
+    
+      If pos = Cells(J, 8).Value Then
+         If Cells(J, 14).Value > monto Then
+            Cells(J, 9).Value = "MAYOR"
+            monto = Cells(J, 14).Value
+            
+           Else
+          
+            If Cells(J, 14).Value < monto Then
+             Cells(x, 9).Value = "MAYOR"
+             monto = Cells(x, 14).Value
+           
+           
+             Else
+             
+               If Cells(J, 14).Value = monto Then
+                Cells(J, 9).Value = "MAYOR"
+                monto = Cells(J, 14).Value
+               End If
+            End If
+           
+         End If
+      End If
+     
+        If pos <> Cells(J, 8).Value Then
+         pos = Cells(J, 8).Value
+         monto = Cells(J, 14).Value
+        End If
+        
+    Next J
+
+    MsgBox "Proceso Finalizado"
+End Sub

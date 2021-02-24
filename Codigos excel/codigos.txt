@@ -1,0 +1,230 @@
+Sub BuscarDuplicados()
+    Dim rango As Range
+    Dim nFilas As Long
+    Dim nColumnas As Long
+    Dim i, cont As Long
+    
+
+    'Calcular el número de filas de la hoja actual
+    Set rango = ActiveSheet.UsedRange
+    nFilas = rango.Rows.Count
+    nColumnas = rango.Columns.Count
+    cont = 0
+    For i = 2 To 592
+       Cells(i, 16).Value = "buscado"
+       Cells(i, 18).Value = i
+      For j = 2 To 592
+        If Cells(j, 16).Value <> "buscado" Then
+            If Cells(i, 11).Value = Cells(j, 11).Value Then
+              If Cells(i, 12).Value = Cells(j, 12).Value Then
+              Cells(i, 17).Value = "repetido"
+              Cells(j, 19).Value = i
+              End If
+            End If
+        End If
+      Next j
+      Cells(i, 16).Value = " "
+    Next i
+   
+    MsgBox "Proceso Exitoso"
+End Sub
+
+
+
+Sub Comparar_Archivos2()
+    Dim rango As Range
+    Dim nFilas As Long
+    Dim nColumnas As Long
+    Dim i As Long
+    Dim filaCopia As Long
+    Dim nFilasError As Integer
+    Dim columnaCopia As Long
+    Dim wbContenido As Workbook, _
+        wsContenido As Excel.Worksheet
+
+
+    
+    'abro el libro con el que voy a comparar con el Historico
+    Set wbContenido = Application.Workbooks.Open("C:\Users\MARIANO\Desktop\Nueva carpeta\E6-2019-32576-A-PORTELA DELIA-JUDCIAL-CON DUPLICADOS.xlsx")
+  
+    
+    'Activo el libro que estoy por abrir
+    ThisWorkbook.Activate
+    
+    'va el nombre de la hoja del libro que voy a abrir
+    Set wsContenido = wbContenido.Worksheets("HOJA1")
+    
+    'va el nombre de la hoja del libro que ya tengo abierto
+    Sheets("HOJA1").Select
+    
+    'Calculo el número de filas de la hoja actual del libro que ya tengo abierto
+    Set rango = ActiveSheet.UsedRange
+    nFilas = rango.Rows.Count
+    nColumnas = rango.Columns.Count
+    
+    'Calculo el número de filas de la hoja de los cobrados
+    Set rangoCont = wsContenido.UsedRange
+    nFilasCont = rangoCont.Rows.Count
+    
+    'en la primer columna vacia la nombro para ver cuales son los que que se encuentran en cobrados
+    Cells(1, nColumnas + 1).Value = "IGUALES"
+    
+    
+    For i = 2 To 5
+    Workbooks("E6-2019-32576-A-PORTELA DELIA-JUDCIAL.CSV").Activate
+     Cells(i, 16).Value = "buscado"
+       Cells(i, 18).Value = i
+       V1 = Cells(i, 18).Value
+      v2 = Cells(i, 11).Value
+      For j = 2 To 5
+      V3 = Cells(j, 12).Value
+        Workbooks("E6-2019-32576-A-PORTELA DELIA-JUDCIAL-CON DUPLICADOS.xlsx").Activate
+           If Sheets("HOJA1").Cells(i, 11).Value = v2 Then
+              If Sheets("HOJA1").Cells(i, 12).Value = V3 Then
+              Cells(i, 17).Value = "repetido"
+             
+             Workbooks("E6-2019-32576-A-PORTELA DELIA-JUDCIAL-CON DUPLICADOS.xlsx").Activate
+             Sheets("HOJA1").Cells(j, 19).Value = V1
+              End If
+            End If
+        
+      Next j
+      Cells(i, 16).Value = " "
+    Next i
+
+    MsgBox "Proceso exitosa"
+    Exit Sub
+
+End Sub
+Sub Subrogancia()
+    Dim rango As Range
+    Dim nFilas As Long
+    Dim nColumnas As Long
+    Dim i, cont, mes, año, mesaño As Long
+    
+
+    'Calcular el número de filas de la hoja actual
+    Set rango = ActiveSheet.UsedRange
+    nFilas = rango.Rows.Count
+    nColumnas = rango.Columns.Count
+    cont = 1
+    mes = 10000
+    año = 2014
+    mesaño = mes + año
+     cont = cont + 1
+      For j = 1 To 7
+       Cells(cont, 9).Value = "1"
+       Cells(cont, 12).Value = mesaño
+       Cells(cont + 1, 9).Value = "7"
+       Cells(cont, 12).Value = mesaño
+       Cells(cont + 2, 9).Value = "16"
+       Cells(cont, 12).Value = mesaño
+       Cells(cont + 3, 9).Value = "25"
+       Cells(cont, 12).Value = mesaño
+       Cells(cont + 4, 9).Value = "126"
+       Cells(cont, 12).Value = mesaño
+       Cells(cont + 5, 9).Value = "154"
+       Cells(cont, 12).Value = mesaño
+       Cells(cont + 6, 9).Value = "200"
+       Cells(cont, 12).Value = mesaño
+       Cells(cont + 7, 9).Value = "213"
+       Cells(cont, 12).Value = mesaño
+       cont = cont + 8
+       año = año + (j - 1)
+      Next j
+    
+   
+    MsgBox "Proceso Exitoso"
+End Sub
+
+
+
+
+
+
+
+
+Sub Comparar_Archivos2()
+    Dim rango As Range
+    Dim nFilas As Long
+    Dim nColumnas As Long
+    Dim i, cuoc, rj, unidad, importe, vto As Long
+    Dim filaCopia As Long
+    Dim nFilasError As Integer
+    Dim columnaCopia As Long
+    Dim wbContenido As Workbook, _
+        wsContenido As Excel.Worksheet
+
+
+    
+    'abro el libro con el que voy a comparar con el Historico
+    Set wbContenido = Application.Workbooks.Open("C:\Users\MARIANO\Desktop\PORTELA DELIA\HOJA1.xlsx")
+  
+    
+    'Activo el libro que estoy por abrir
+    ThisWorkbook.Activate
+    
+    
+    'va el nombre de la hoja del libro que voy a abrir
+    Set wsContenido = wbContenido.Worksheets("HOJA1")
+    
+    'va el nombre de la hoja del libro que ya tengo abierto
+    Sheets("HOJA1").Select
+    Sheets("HOJA1").Cells(1, 16).Value = "ESTADO"
+    
+    'Calculo el número de filas de la hoja actual del libro que ya tengo abierto
+    Set rango = ActiveSheet.UsedRange
+    nFilas = rango.Rows.Count
+    nColumnas = rango.Columns.Count
+    
+    'Calculo el número de filas de la hoja de los cobrados
+    Set rangoCont = wsContenido.UsedRange
+    nFilasCont = rangoCont.Rows.Count
+    Workbooks("HOJA1.xlsx").Activate
+    Sheets("HOJA1").Cells(1, 16).Value = "ESTADO"
+    Sheets("HOJA1").Cells(1, 17).Value = "Nº FILA ENCONTRADA "
+    
+    
+    'en la primer columna vacia la nombro para ver cuales son los que que se encuentran en cobrados
+    'Cells(1, nColumnas + 1).Value = "IGUALES"
+    
+    
+    For i = 2 To 5
+        Workbooks("E6-2019-32576-A-PORTELA DELIA-JUDCIAL.CSV").Activate
+        Cells(i, 16).Value = "buscado"
+        V1 = i
+        cuoc = Cells(i, 8).Value
+        rj = Cells(i, 9).Value
+        unidad = Cells(i, 10).Value
+        importe = Cells(i, 11).Value
+        vto = Cells(i, 12).Value
+      For j = 2 To 649
+        
+        Workbooks("HOJA1.xlsx").Activate
+         If Sheets("HOJA1").Cells(j, 8).Value = cuoc Then
+            If Sheets("HOJA1").Cells(j, 9).Value = rj Then
+                 If Sheets("HOJA1").Cells(j, 10).Value = unidad Then
+                    If Sheets("HOJA1").Cells(j, 11).Value = importe Then
+                        If Sheets("HOJA1").Cells(j, 12).Value = vto Then
+                          
+                          Sheets("HOJA1").Cells(j, 16).Value = "ESTA"
+                         
+                          If Sheets("HOJA1").Cells(j, 17).Value = "" Then
+                              Sheets("HOJA1").Cells(j, 17).Value = V1
+                          End If
+                          
+                        End If
+                     End If
+                  End If
+            End If
+         End If
+          
+          
+      Next j
+       
+    Next i
+     MsgBox "Proceso exitosa"
+End Sub
+
+
+
